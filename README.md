@@ -96,9 +96,17 @@ Player dialogue choices are recorded in `GameState` alongside case decisions, so
 
 Scaffolding level is set per case and adjusted by player behavior, so the mentor models heavily in early cases and asks questions instead of answering them in later ones.
 
+### Inquiry, consequences, and progression
+
+Detailed design: `docs/design/game_systems.md`.
+
+* **Inquiry:** The more the player can ask about, the better. Players ask authored questions of the case file, the mentor ("ask an expert"), and, in the future, consultants from other disciplines (art historian, curator, chemist, painter) who give differing interpretations. Some questions have no answer; some things are just unknown.
+* **Consequences:** Players may take a different approach from what was done historically or what is best practice today. Decisions are supervised and have weight: some can be undone by the mentor, and some are beyond the point of undoing or repair. Consequences are permanent for the object, not for the player's progress.
+* **Progression:** Not every tool is available at once. As the player gains experience (XP) and is promoted, the mentor trusts them with more equipment and treatments.
+
 ### Modes
 
-* **Campaign (prototype focus):** Authored cases with fixed conditions, narrative, and mentor dialogue written around specific findings.
+* **Campaign (prototype focus):** Authored cases with fixed conditions, narrative, and mentor dialogue written around specific findings. Set in a present-day conservation lab, each case re-enacts a real historical conservation: the object arrives in the state it was in at the time, and the debrief compares the player's choices with what actually happened.
 * **Infinite mode (future):** The player graduates from apprentice to independent practitioner. Items are drawn from the same asset library with randomized conditions and no campaign scaffolding.
 
 ### Demo scope (ISLS 2027)
@@ -213,7 +221,6 @@ All third-party assets must be openly licensed (public domain, CC0, CC BY, or si
 │       ├── mentor_rules/     # When the mentor speaks: event + condition + scaffolding level
 │       └── assets/           # Art and audio
 ├── addons/                   # Third-party Godot plugins (e.g., Dialogic)
-├── tools/                    # Development-time scripts, ignored by Godot (e.g., fetch_met_asset.py)
 ├── docs/
 │   ├── assets/ASSET_LOG.csv
 │   └── design/               # Design notes and decisions

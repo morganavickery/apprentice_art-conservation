@@ -33,7 +33,7 @@ Demo scope (from README): one object, three to four conditions, one mentor arc s
 
 ## Phase 1: Data model and first item
 
-- [ ] Choose the demo object (with conservator input) and its three to four conditions
+- [ ] Define the pilot case conditions (Wheat Field with Cypresses; see `pilot_case_wheat_field.md`) with conservator input
 - [ ] Identify SME reviewers and schedule a first conversation
 - [ ] Choose primary art sources (e.g., Met Open Access, Smithsonian Open Access) and record the choice in `docs/design/`
 - [ ] `core/items/`: `ItemDefinition`, `ConditionDefinition`, `ConditionInstance` Resource classes
@@ -53,6 +53,8 @@ Demo scope (from README): one object, three to four conditions, one mentor arc s
 - [ ] Scaffolding level per case, adjusted by player behavior
 - [ ] First reactive mentor line and first conversation timeline, triggered through mentor rules
 - [ ] Record dialogue choices in `GameState`
+- [ ] Inquiry: `InquiryQuestion` / `InquiryAnswer` Resources with answer status (known, partial, unknown, disputed); ask from the case file and the mentor
+- [ ] Case file view for the pilot object, written from sourced notes
 
 
 ## Phase 3: Case flow
@@ -62,6 +64,9 @@ Demo scope (from README): one object, three to four conditions, one mentor arc s
 - [ ] Diagnosis: identify conditions and likely causes
 - [ ] Planning: choose treatments and weigh risks
 - [ ] Intervention with basic tactile feedback (placeholder sound and animation)
+- [ ] Treatment reversibility (reversible, mentor-reversible, irreversible), with mentor warnings that fade with scaffolding
+- [ ] Persistent object state after treatment; decide the save policy around irreversible steps
+- [ ] Progression: XP, ranks, and tool/treatment permissions (at least one unlock in the demo)
 - [ ] `core/documentation/`: condition and treatment report form
 - [ ] Debrief conversation that reflects the player's actual decisions
 - [ ] **Milestone 3: vertical slice playable start to finish**
@@ -119,8 +124,11 @@ Demo scope (from README): one object, three to four conditions, one mentor arc s
 
 ## Open decisions
 
-- [ ] Demo object and its conditions
+- [x] Demo object: Wheat Field with Cypresses (conditions still open)
 - [ ] Primary art sources
 - [ ] Mentor character (name, voice, portrait)
 - [ ] Art direction for the workbench and studio
 - [ ] Code and content license
+- [ ] What earns XP, and whether poor decisions cost XP or trust
+- [ ] Whether consulting has a cost
+- [ ] Consultants system (future, after the demo)
