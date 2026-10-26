@@ -52,6 +52,8 @@ Everyone working on the project, and any automated builds, must use these exact 
 
 
 
+
+
 1. **Web (primary):** HTML5 export using Godot's single-threaded web option, so it runs on Chromebooks and standard browsers without special server configuration.
 2. **Desktop:** Windows, macOS, and Linux downloads.
 
@@ -218,6 +220,8 @@ All third-party assets must be openly licensed (public domain, CC0, CC BY, or si
 
 
 ## Getting started
+
+
 
 
 
