@@ -54,6 +54,8 @@ Everyone working on the project, and any automated builds, must use these exact 
 
 
 
+
+
 1. **Web (primary):** HTML5 export using Godot's single-threaded web option, so it runs on Chromebooks and standard browsers without special server configuration.
 2. **Desktop:** Windows, macOS, and Linux downloads.
 
@@ -102,7 +104,6 @@ Scaffolding level is set per case and adjusted by player behavior, so the mentor
 ### Demo scope (ISLS 2027)
 
 One object, three to four conditions, one complete mentor arc showing partial fading, two to three examination modes, and a documentation step. Playable in 10 to 15 minutes.
-
 
 ## Architecture
 
@@ -212,6 +213,7 @@ All third-party assets must be openly licensed (public domain, CC0, CC BY, or si
 │       ├── mentor_rules/     # When the mentor speaks: event + condition + scaffolding level
 │       └── assets/           # Art and audio
 ├── addons/                   # Third-party Godot plugins (e.g., Dialogic)
+├── tools/                    # Development-time scripts, ignored by Godot (e.g., fetch_met_asset.py)
 ├── docs/
 │   ├── assets/ASSET_LOG.csv
 │   └── design/               # Design notes and decisions
@@ -223,15 +225,14 @@ All third-party assets must be openly licensed (public domain, CC0, CC BY, or si
 
 
 
-
-
-
 1. Install **Godot** at the pinned version above (standard build, not .NET).
 2. Clone this repository.
 3. Open Godot, choose **Import**, and select `project.godot`. Dialogic is included in `addons/`; no separate install is needed.
 
 
 ## Roadmap
+
+Detailed timeline and task list: `docs/design/DEVELOPMENT_PLAN.md`.
 
 - [x] Pin exact Godot and Dialogic versions
 - [x] Create project skeleton
