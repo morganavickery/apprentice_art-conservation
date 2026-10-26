@@ -42,8 +42,8 @@ Theoretical grounding: cognitive apprenticeship, authentic activity, and communi
 
 | Tool | Version | Notes |
 |----|----|----|
-| Godot | **4.5.x (TBD: exact patch)** | Standard build, not .NET. Dialogic 2 requires Godot 4.5 or newer. |
-| Dialogic | **2.0 Alpha 20+ (TBD: exact release)** | Committed to `addons/`. Upgrade only deliberately, and test existing timelines after any upgrade; Dialogic is still in alpha and has introduced breaking changes between releases. |
+| Godot | **4.7.2.stable** | Standard build, not .NET. Dialogic 2 requires Godot 4.5 or newer. |
+| Dialogic | **2.0 Alpha 20** | Committed to `addons/`. Upgrade only deliberately, and test existing timelines after any upgrade; Dialogic is still in alpha and has introduced breaking changes between releases. |
 
 Everyone working on the project, and any automated builds, must use these exact versions.
 
@@ -233,10 +233,10 @@ All third-party assets must be openly licensed (public domain, CC0, CC BY, or si
 
 ## Roadmap
 
-- [ ] Pin exact Godot and Dialogic versions
-- [ ] Create project skeleton
+- [x] Pin exact Godot and Dialogic versions
+- [x] Create project skeleton
 - [x] Choose dialogue system (Dialogic 2)
-- [ ] Global systems: `GameState`, `EventBus`, `Settings`, `SaveSystem`, `Telemetry`
+- [ ] Global systems: `GameState`, `EventBus`, `Settings`, `SaveSystem`, `Telemetry` (registered as autoload stubs)
 - [ ] Onboarding preferences screen
 - [ ] Condition layer system with one item and one condition
 - [ ] Examination modes: visual, UV, raking light
