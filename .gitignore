@@ -1,3 +1,9 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+
+# Material Maker working files (.ptex); only exported PNGs are committed
+/material maker/
+
+# macOS Finder metadata
+.DS_Store
