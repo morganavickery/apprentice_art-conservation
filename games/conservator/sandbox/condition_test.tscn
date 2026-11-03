@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://bq3prxkc3wgya"]
+
+[ext_resource type="Script" uid="uid://bfp3ci0hbq600" path="res://games/conservator/sandbox/condition_test.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://k0t2vffspyow" path="res://games/conservator/assets/art/vos_alice_barney.jpg" id="2_base"]
+[ext_resource type="Shader" uid="uid://dpq5u58d5ow68" path="res://core/items/condition_overlay_film.gdshader" id="3_film"]
+[ext_resource type="Texture2D" uid="uid://bltvgycxnf3dd" path="res://games/conservator/assets/conditions/surface_grime/surface_grime_vis.png" id="4_grime"]
+[ext_resource type="Texture2D" uid="uid://ceuj6074dp88l" path="res://games/conservator/assets/conditions/discolored_varnish/discolored_varnish_mask.png" id="5_varnish_mask"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_varnish"]
+shader = ExtResource("3_film")
+shader_parameter/mask_texture = ExtResource("5_varnish_mask")
+shader_parameter/tile_count = Vector2(1, 1)
+shader_parameter/mask_tile_count = Vector2(1, 1)
+shader_parameter/mask_offset = Vector2(0, 0)
+shader_parameter/severity = 0.6
+shader_parameter/max_thickness = 3.0
+shader_parameter/severity_curve = 1.5
+shader_parameter/mask_variation = 0.25
+shader_parameter/film_tint = Color(0.93, 0.88, 0.74, 1)
+shader_parameter/haze = 0.08
+shader_parameter/haze_color = Color(0.48, 0.39, 0.16, 1)
+shader_parameter/relief_strength = 0.2
+shader_parameter/relief_radius = 6.0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_grime"]
+seed = 1894
+frequency = 0.004
+fractal_octaves = 4
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_grime"]
+noise = SubResource("FastNoiseLite_grime")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_grime"]
+shader = ExtResource("3_film")
+shader_parameter/overlay_texture = ExtResource("4_grime")
+shader_parameter/mask_texture = SubResource("NoiseTexture2D_grime")
+shader_parameter/tile_count = Vector2(1, 1)
+shader_parameter/mask_tile_count = Vector2(1, 1)
+shader_parameter/mask_offset = Vector2(0, 0)
+shader_parameter/severity = 0.0
+shader_parameter/max_thickness = 4.0
+shader_parameter/severity_curve = 2.0
+shader_parameter/mask_variation = 0.8
+shader_parameter/film_tint = Color(1, 1, 1, 1)
+shader_parameter/haze = 0.15
+shader_parameter/haze_color = Color(0.73, 0.7, 0.65, 1)
+shader_parameter/relief_strength = 0.5
+shader_parameter/relief_radius = 6.0
+
+[node name="ConditionTest" type="Control" unique_id=164344945]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="ColorRect" parent="." unique_id=2086476618]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.45, 0.45, 0.45, 1)
+
+[node name="Layout" type="HBoxContainer" parent="." unique_id=2054141537]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 24.0
+offset_right = -24.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 24
+
+[node name="Painting" type="AspectRatioContainer" parent="Layout" unique_id=1498314413]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+ratio = 0.5815
+
+[node name="Base" type="TextureRect" parent="Layout/Painting" unique_id=2088882906]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("2_base")
+expand_mode = 1
+
+[node name="Varnish" type="ColorRect" parent="Layout/Painting" unique_id=138521737]
+material = SubResource("ShaderMaterial_varnish")
+layout_mode = 2
+mouse_filter = 2
+
+[node name="GrimeBackBuffer" type="BackBufferCopy" parent="Layout/Painting" unique_id=1721933254]
+copy_mode = 2
+
+[node name="Grime" type="ColorRect" parent="Layout/Painting" unique_id=1266477389]
+material = SubResource("ShaderMaterial_grime")
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Controls" type="VBoxContainer" parent="Layout" unique_id=908923537]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="LayerControls" type="VBoxContainer" parent="Layout/Controls" unique_id=1436793158]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="SeedLabel" type="Label" parent="Layout/Controls" unique_id=311175107]
+layout_mode = 2
+text = "Mask seed"
+
+[node name="SeedBox" type="SpinBox" parent="Layout/Controls" unique_id=39201303]
+unique_name_in_owner = true
+layout_mode = 2
+max_value = 99999.0
+rounded = true

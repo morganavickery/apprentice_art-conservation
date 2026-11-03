@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="The Conservator's Apprentice"
+run/main_scene="res://games/conservator/sandbox/condition_test.tscn"
 config/features=PackedStringArray("4.7", "GL Compatibility")
 config/icon="res://icon.svg"
 
