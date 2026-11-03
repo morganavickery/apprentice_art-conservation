@@ -38,6 +38,7 @@ Demo scope (from README): one object, three to four conditions, one mentor arc s
 - [ ] Choose primary art sources (e.g., Met Open Access, Smithsonian Open Access) and record the choice in `docs/design/`
 - [ ] `core/items/`: `ItemDefinition`, `ConditionDefinition`, `ConditionInstance` Resource classes
 - [ ] Layer compositing: base asset + condition visual layers, with severity as a parameter
+- [ ] Mock up condition overlays for the opening case (see `conditions_reference.md`; step-by-step in `ASSET_PLAN.md`)
 - [ ] One item and one condition authored as `.tres` in `games/conservator/`
 - [ ] Source the base image for the demo object; log it in `ASSET_LOG.csv` before committing
 - [ ] Document the data model in `docs/design/`
@@ -65,7 +66,7 @@ Demo scope (from README): one object, three to four conditions, one mentor arc s
 - [ ] Planning: choose treatments and weigh risks
 - [ ] Intervention with basic tactile feedback (placeholder sound and animation)
 - [ ] Treatment reversibility (reversible, mentor-reversible, irreversible), with mentor warnings that fade with scaffolding
-- [ ] Persistent object state after treatment; decide the save policy around irreversible steps
+- [ ] Persistent object state after treatment; autosave after irreversible steps
 - [ ] Progression: XP, ranks, and tool/treatment permissions (at least one unlock in the demo)
 - [ ] `core/documentation/`: condition and treatment report form
 - [ ] Debrief conversation that reflects the player's actual decisions
@@ -115,20 +116,22 @@ Demo scope (from README): one object, three to four conditions, one mentor arc s
 
 ## Ongoing
 
-- Log every third-party asset in `ASSET_LOG.csv` before committing it
-- Check new UI against the accessibility list before calling it done
-- Keep `README.md` current
-- Record design decisions in `docs/design/`
-- Decide on a license (code and content) before the public demo link goes live
+* Log every third-party asset in `ASSET_LOG.csv` before committing it
+* Check new UI against the accessibility list before calling it done
+* Keep `README.md` current
+* Record design decisions in `docs/design/`
+* Decide on a license (code and content) before the public demo link goes live
 
 
 ## Open decisions
 
-- [x] Demo object: Wheat Field with Cypresses (conditions still open)
+- [x] Opening case: Vos, *Alice Barney in White Satin* (see `case_candidates.md`)
 - [ ] Primary art sources
 - [ ] Mentor character (name, voice, portrait)
 - [ ] Art direction for the workbench and studio
 - [ ] Code and content license
-- [ ] What earns XP, and whether poor decisions cost XP or trust
+- [x] What earns XP: participation in real practice, including mistakes (see `game_systems.md`)
 - [ ] Whether consulting has a cost
 - [ ] Consultants system (future, after the demo)
+
+

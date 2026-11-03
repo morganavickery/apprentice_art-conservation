@@ -56,6 +56,8 @@ Everyone working on the project, and any automated builds, must use these exact 
 
 
 
+
+
 1. **Web (primary):** HTML5 export using Godot's single-threaded web option, so it runs on Chromebooks and standard browsers without special server configuration.
 2. **Desktop:** Windows, macOS, and Linux downloads.
 
@@ -150,6 +152,8 @@ ConditionDefinition
 
 The campaign uses the full structure. Infinite mode uses everything except `campaign_metadata`. Severity is a parameter rather than a separate condition, so one illustration serves many cases.
 
+Condition overlays come from a painting-neutral texture library that can be applied to any item, in both modes. Campaign cases apply the conditions an object historically had, but the overlays need not match where those conditions appeared on the real object: fidelity is in the treatments, sequences, and methods, not the visuals. Details: `docs/design/conditions_reference.md`.
+
 ### Global systems (autoloads)
 
 | System | Responsibility |
@@ -219,7 +223,10 @@ All third-party assets must be openly licensed (public domain, CC0, CC BY, or si
 │       ├── cases/            # Campaign case definitions
 │       ├── dialogue/         # Dialogic timelines (conversations and reactive lines)
 │       ├── mentor_rules/     # When the mentor speaks: event + condition + scaffolding level
-│       └── assets/           # Art and audio
+│       └── assets/           # Art and audio (see docs/design/ASSET_PLAN.md)
+│           ├── art/          # Base images of paintings, 2048 px long edge
+│           ├── conditions/   # Overlay textures, one folder per condition_id
+│           └── tools/        # Tool sprites
 ├── addons/                   # Third-party Godot plugins (e.g., Dialogic)
 ├── docs/
 │   ├── assets/ASSET_LOG.csv
@@ -229,6 +236,8 @@ All third-party assets must be openly licensed (public domain, CC0, CC BY, or si
 
 
 ## Getting started
+
+
 
 
 
