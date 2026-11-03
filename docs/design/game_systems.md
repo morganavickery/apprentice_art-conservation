@@ -51,8 +51,9 @@ This mirrors real conservation ethics: reversibility and minimal intervention ar
 
 **Reconciling with "failure is informative, not punishing":** consequences are permanent *for the object*, not for the player's progress. A damaging choice does not end the case or block advancement; it becomes the most important thing to talk about.
 
+**Saving:** the game autosaves immediately after any irreversible action, so choices cannot be undone by reloading.
+
 **Open questions**
-- Saving: if the player can reload before an irreversible step, choices lose weight. Options: autosave immediately after irreversible actions, or one save slot per case.
 - Authoring scope: debriefs should respond to the object's resulting state (rules over state) rather than to every possible path, to keep branching manageable.
 
 
@@ -68,16 +69,40 @@ This is the cognitive apprenticeship model in mechanical form: scaffolding fades
 - Every examination tool and treatment has a required rank.
 - Promotion is a mentor moment (a conversation), not just a pop-up.
 
-**What earns XP matters.** Rewarding only correct answers or completion invites gaming the system. Reward the habits of expert practice:
-- Thorough examination before treatment
-- Spot tests before treatment
-- Asking appropriate questions and consulting before deciding
-- Restraint (choosing not to intervene when that is right)
-- Complete, accurate documentation
+**What earns XP.** XP is rewarded for engaging in the practices, using the knowledge, and using the language, tools, and resources that real art conservators use. This is grounded in sociocultural learning theory (Lave and Wenger; communities of practice; legitimate peripheral participation): XP measures growing participation in the practice, not correctness.
+
+Being wrong and making mistakes is part of the process and can still earn XP. XP should be congruent with learning experience, and sometimes the most learning happens when we get things wrong and live with the consequences.
+
+Examples of XP-earning practice:
+- Examining with the appropriate tools before treating
+- Running spot tests before treatment
+- Asking questions, consulting the case file, mentor, or consultants
+- Using the field's vocabulary in documentation and dialogue choices
+- Documenting accurately, including documenting one's own mistakes
+- Reflecting on a consequence in the debrief
+
+**Above-rank treatments: the mentor models.** For famous paintings requiring higher-rank treatment, the mentor performs the treatment and asks scaffolding questions. The apprentice does not touch anything, but can still witness and talk through the procedure, while high-profile pieces stay in capable, safe hands. This is the modeling phase of cognitive apprenticeship, and it lets early cases include famous works without breaking the progression.
+
+- Witnessing and talking through a procedure earns XP (it is legitimate participation).
+- The player's answers to the mentor's questions are recorded in `GameState`, like any dialogue choice.
+- The same treatment may later become available to the player at a higher rank, so modeling foreshadows future cases.
 
 **Open questions**
-- Can a poor decision cost XP or trust, or does it only earn less?
 - How much progression appears in the demo (one case)? Possibly one promotion or one tool unlock, to show the system exists.
+
+
+## Draft tool and treatment ladder (paintings)
+
+From background reading (Wikipedia: *Paintings conservator*; *Conservation and restoration of paintings*). A starting point to verify with a conservator and primary sources (e.g., AIC, Canadian Conservation Institute), not a final list.
+
+| Rank | Examination | Treatment |
+|----|----|----|
+| 1. Technician | Visible light, magnification, raking light, UV fluorescence | Documentation, surface cleaning (after spot tests) |
+| 2. Assistant conservator | Infrared reflectography, X-radiography | Varnish removal, consolidation of loose paint |
+| 3. Associate conservator | XRF and macro-XRF, multispectral and infrared false color, cross-section sampling (invasive) | Filling losses, inpainting, varnishing |
+| 4. Conservator | Terahertz imaging, laser-based analysis | Structural work: tear repair, strip-lining, lining removal, facing |
+
+Historical treatments now considered harmful in many cases (full lining, cradling, transfer) appear in objects' histories rather than as player options, so players learn how practice has changed.
 
 
 ## Data model additions (draft)
