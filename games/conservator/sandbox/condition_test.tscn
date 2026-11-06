@@ -5,6 +5,18 @@
 [ext_resource type="Shader" uid="uid://dpq5u58d5ow68" path="res://core/items/condition_overlay_film.gdshader" id="3_film"]
 [ext_resource type="Texture2D" uid="uid://bltvgycxnf3dd" path="res://games/conservator/assets/conditions/surface_grime/surface_grime_vis.png" id="4_grime"]
 [ext_resource type="Texture2D" uid="uid://ceuj6074dp88l" path="res://games/conservator/assets/conditions/discolored_varnish/discolored_varnish_mask.png" id="5_varnish_mask"]
+[ext_resource type="Shader" path="res://core/items/condition_overlay.gdshader" id="6_patch"]
+[ext_resource type="Texture2D" path="res://games/conservator/assets/conditions/paint_loss/paint_loss_ground_vis.png" id="7_ground"]
+[ext_resource type="Texture2D" path="res://games/conservator/assets/conditions/paint_loss/paint_loss_shape_01.png" id="8_loss_shape_01"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_loss"]
+shader = ExtResource("6_patch")
+shader_parameter/overlay_texture = ExtResource("7_ground")
+shader_parameter/tile_count = Vector2(1, 1)
+shader_parameter/severity = 0.5
+shader_parameter/mask_softness = 0.0
+shader_parameter/severity_opacity = 0.0
+shader_parameter/tint = Color(1, 1, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_varnish"]
 shader = ExtResource("3_film")
@@ -95,6 +107,13 @@ expand_mode = 1
 material = SubResource("ShaderMaterial_varnish")
 layout_mode = 2
 mouse_filter = 2
+
+[node name="Loss" type="ColorRect" parent="Layout/Painting"]
+material = SubResource("ShaderMaterial_loss")
+layout_mode = 2
+mouse_filter = 2
+metadata/shape_textures = [ExtResource("8_loss_shape_01")]
+metadata/region = "edges"
 
 [node name="GrimeBackBuffer" type="BackBufferCopy" parent="Layout/Painting" unique_id=1721933254]
 copy_mode = 2

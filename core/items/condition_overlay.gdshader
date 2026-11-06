@@ -10,9 +10,13 @@ shader_type canvas_item;
 uniform float mask_softness : hint_range(0.0, 0.5) = 0.15;
 // How much severity also scales opacity (0 = mask extent only).
 uniform float severity_opacity : hint_range(0.0, 1.0) = 0.5;
+// Multiplied with the overlay texture, e.g. to color a ground for an item
+// whose ground is not white.
+uniform vec3 tint : source_color = vec3(1.0);
 
 void fragment() {
 	vec4 overlay = sample_overlay(UV);
+	overlay.rgb *= tint;
 
 	float threshold = 1.0 - severity;
 	float coverage = smoothstep(threshold - mask_softness, threshold + mask_softness, sample_mask(UV));

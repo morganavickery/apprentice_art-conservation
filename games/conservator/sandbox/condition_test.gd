@@ -2,6 +2,9 @@ extends Control
 ## Sandbox for tuning condition overlays on the Vos base image.
 ## Not part of the game: a test bench for ASSET_PLAN.md Steps 2 and 3.
 ## Every overlay under Painting gets its own severity controls, built here.
+## An overlay's mask is one of three kinds: a generated noise, a tileable
+## library map, or shapes placed by ShapeMask (overlays with "shape_textures"
+## and "region" metadata).
 
 const PRESETS: Array[float] = [0.3, 0.6, 0.9]
 const DEFAULT_SEED := 1894
@@ -11,6 +14,7 @@ const DEFAULT_SEED := 1894
 @onready var _seed_box: SpinBox = %SeedBox
 
 var _overlays: Array[ColorRect] = []
+var _layer_seeds := {}
 
 
 func _ready() -> void:
@@ -31,7 +35,9 @@ func _setup_overlay(overlay: ColorRect) -> void:
 	var tile_size := texture.get_size() if texture else base_size
 	material.set_shader_parameter("tile_count", base_size / tile_size)
 	material.set_shader_parameter("base_texture", _base.texture)
-	if not _mask_noise(overlay):
+	if _has_shapes(overlay):
+		material.set_shader_parameter("mask_from_alpha", true)
+	elif not _mask_noise(overlay):
 		var mask := material.get_shader_parameter("mask_texture") as Texture2D
 		material.set_shader_parameter("mask_tile_count", base_size / mask.get_size())
 
@@ -69,19 +75,25 @@ func _setup_overlay(overlay: ColorRect) -> void:
 
 	slider.value_changed.connect(func(value: float) -> void:
 		material.set_shader_parameter("severity", value)
-		value_label.text = "%.2f" % value)
+		value_label.text = "%.2f" % value
+		if _has_shapes(overlay):
+			_rebuild_shape_mask(overlay))
 	slider.value = material.get_shader_parameter("severity")
 	value_label.text = "%.2f" % slider.value
 
 
 ## Each layer gets a different seed derived from the box, so their masks
-## don't line up. Noise masks are regenerated; tileable map masks are shifted.
+## don't line up. Noise masks are regenerated, shape masks are re-placed, and
+## tileable map masks are shifted.
 func _on_seed_changed(value: float) -> void:
 	for i in _overlays.size():
 		var layer_seed := int(value) + i * 101
+		_layer_seeds[_overlays[i]] = layer_seed
 		var noise := _mask_noise(_overlays[i])
 		if noise:
 			noise.seed = layer_seed
+		elif _has_shapes(_overlays[i]):
+			_rebuild_shape_mask(_overlays[i])
 		else:
 			var rng := RandomNumberGenerator.new()
 			rng.seed = layer_seed
@@ -89,7 +101,22 @@ func _on_seed_changed(value: float) -> void:
 			(_overlays[i].material as ShaderMaterial).set_shader_parameter("mask_offset", offset)
 
 
-## The overlay's generated noise, or null if its mask is a library map.
+func _has_shapes(overlay: ColorRect) -> bool:
+	return overlay.has_meta("shape_textures")
+
+
+## Built at half the base image's resolution, which is plenty for a mask.
+func _rebuild_shape_mask(overlay: ColorRect) -> void:
+	var material := overlay.material as ShaderMaterial
+	var shapes: Array[Texture2D] = []
+	shapes.assign(overlay.get_meta("shape_textures"))
+	var size := Vector2i(_base.texture.get_size() / 2.0)
+	var mask := ShapeMask.build(shapes, size, overlay.get_meta("region"),
+			_layer_seeds.get(overlay, DEFAULT_SEED), material.get_shader_parameter("severity"))
+	material.set_shader_parameter("mask_texture", mask)
+
+
+## The overlay's generated noise, or null if its mask is a library map or shapes.
 func _mask_noise(overlay: ColorRect) -> FastNoiseLite:
 	var material := overlay.material as ShaderMaterial
 	var mask := material.get_shader_parameter("mask_texture") as NoiseTexture2D

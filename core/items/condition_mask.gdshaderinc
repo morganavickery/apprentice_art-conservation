@@ -15,6 +15,9 @@ uniform vec2 mask_tile_count = vec2(1.0, 1.0);
 // Shifts a tileable mask so the same map lands differently on each item
 // (derived from the seed). Unused for noise masks, which have their own seed.
 uniform vec2 mask_offset = vec2(0.0, 0.0);
+// Read the mask's alpha instead of its red channel, for masks built from
+// shapes drawn on transparent (see ShapeMask).
+uniform bool mask_from_alpha = false;
 uniform float severity : hint_range(0.0, 1.0) = 0.5;
 
 vec4 sample_overlay(vec2 uv) {
@@ -22,5 +25,6 @@ vec4 sample_overlay(vec2 uv) {
 }
 
 float sample_mask(vec2 uv) {
-	return texture(mask_texture, uv * mask_tile_count + mask_offset).r;
+	vec4 mask = texture(mask_texture, uv * mask_tile_count + mask_offset);
+	return mask_from_alpha ? mask.a : mask.r;
 }
