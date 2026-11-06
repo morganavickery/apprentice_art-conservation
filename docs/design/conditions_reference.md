@@ -180,6 +180,11 @@ Historical only (appear in object histories, not as player options): full lining
   * DMG: inpainting spilled over original paint.
   * SFX: spatula smoothing fill; brush for inpainting.
 * **Cases:** Vos (edges) \[SAAM\], Penniman (to bare wood) \[SAAM\], Wheat Field (edges, cypress) \[Met\].
+* **Reference notes** (from before/after photos; used to draw the loss shapes):
+  * Losses break along the crack network: clusters of small angular flakes with straight-segment edges, plus detached flakes nearby, rather than single smooth blobs.
+  * Edge losses form a ragged band along the canvas edge, deeper in some places than others.
+  * Along cracks or old folds, losses can be thin lines of small flecks.
+  * What shows through varies: white or cream ground most often, but also colored grounds (blue, grey, red), a brown underlayer, or bare canvas with its weave clearly visible. One loss can show two depths.
 
 #### Age cracks and drying cracks (craquelure)
 
