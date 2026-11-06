@@ -7,3 +7,6 @@
 
 # macOS Finder metadata
 .DS_Store
+
+# Krita working files (.kra); only exported PNGs are committed
+/krita/
